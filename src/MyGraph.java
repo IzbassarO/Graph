@@ -1,14 +1,15 @@
 import java.util.*;
 
-public class WeightedGraph<V> {
+
+public class MyGraph<V> {
     private final boolean undirected;
     private Map<V, Vertex<V>> map = new HashMap<>();
 
-    public WeightedGraph() {
+    public MyGraph() {
         this.undirected = true;
     }
 
-    public WeightedGraph(boolean undirected) {
+    public MyGraph(boolean undirected) {
         this.undirected = undirected;
     }
 
@@ -16,7 +17,7 @@ public class WeightedGraph<V> {
         map.put(v, new Vertex<>(v));
     }
 
-    public void addEdge(V source, V dest, double weight) {
+    public void addEdge(V source, V dest) {
         if (!hasVertex(source))
             addVertex(source);
 
@@ -27,10 +28,10 @@ public class WeightedGraph<V> {
                 || source.equals(dest))
             return; // reject parallels & self-loops
 
-        map.get(source).addAdjacentVertex(map.getOrDefault(dest, new Vertex<>(dest)), weight);
+        map.get(source).addAdjacentVertex(map.getOrDefault(dest, new Vertex<>(dest)), 0);
 
         if (undirected)
-            map.get(dest).addAdjacentVertex(map.get(source), weight);
+            map.get(dest).addAdjacentVertex(map.get(source), 0);
     }
 
     public int getVerticesCount() {
@@ -64,9 +65,5 @@ public class WeightedGraph<V> {
         List<Vertex<V>> res = new LinkedList<>();
         res.addAll(map.get(v).getAdjacentVertices().keySet());
         return res;
-    }
-
-    public Vertex<V> getVertex(V vertex) {
-        return map.get(vertex);
     }
 }
