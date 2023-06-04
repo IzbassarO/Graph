@@ -1,24 +1,35 @@
 public class Main {
     public static void main(String[] args) {
-        WeightedGraph<String> graph = new WeightedGraph<>();
-        graph.addEdge("Almaty", "Astana", 2.1);
-        graph.addEdge("Almaty", "Shymkent", 7.2);
-        graph.addEdge("Shymkent", "Astana", 3.9);
-        graph.addEdge("Astana", "Kostanay", 3.5);
-        graph.addEdge("Shymkent", "Kyzylorda", 5.4);
+        WeightedGraph<String> weightedGraph = new WeightedGraph<>(true);
+
+        weightedGraph.addEdge("Almaty", "Astana", 2.1);
+        weightedGraph.addEdge("Almaty", "Shymkent", 7.2);
+        weightedGraph.addEdge("Shymkent", "Astana", 3.9);
+        weightedGraph.addEdge("Astana", "Kostanay", 3.5);
+        weightedGraph.addEdge("Shymkent", "Kyzylorda", 5.4);
 
         System.out.println("Dijkstra:");
-        Search<String> djk = new DijkstraSearch<>(graph, "Almaty");
+        Search<String> djk = new DijkstraSearch<>(weightedGraph, "Almaty");
         outputPath(djk, "Kyzylorda");
 
+        MyGraph<String> myGraph = new MyGraph<>();
+
+        myGraph.addEdge("Almaty", "Astana");
+        myGraph.addEdge("Almaty", "Shymkent");
+        myGraph.addEdge("Shymkent", "Astana");
+        myGraph.addEdge("Astana", "Kostanay");
+        myGraph.addEdge("Shymkent", "Kyzylorda");
+
+        System.out.println();
+
         System.out.println("DFS:");
-        Search<String> dfs = new DepthFirstSearch<>(graph, "Almaty");
+        Search<String> dfs = new DepthFirstSearch<>(myGraph, "Almaty");
         outputPath(dfs, "Kyzylorda");
 
-        System.out.println("\n--------------------------------");
+        System.out.println();
 
         System.out.println("BFS:");
-        Search<String> bfs = new BreadthFirstSearch<>(graph, "Almaty");
+        Search<String> bfs = new BreadthFirstSearch<>(myGraph, "Almaty");
         outputPath(bfs, "Kyzylorda");
     }
 
@@ -26,6 +37,6 @@ public class Main {
         for (String v : search.pathTo(key)) {
             System.out.print(v + " -> ");
         }
-        System.out.println(key);
     }
 }
+
