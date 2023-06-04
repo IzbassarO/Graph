@@ -35,7 +35,6 @@ public class DijkstraSearch<V> extends Search<V> {
 
     private double getDistance(V node, V target) {
         return graph.getVertex(node).getWeight(graph.getVertex(target));
-//        throw new RuntimeException("Not found!");
     }
 
     private V getVertexWithMinimumWeight(Set<V> vertices) {
