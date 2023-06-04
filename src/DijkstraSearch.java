@@ -55,4 +55,3 @@ public class DijkstraSearch<V> extends Search<V> {
         return (d == null ? Double.MAX_VALUE : d);
     }
 }
-

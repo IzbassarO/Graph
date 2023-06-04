@@ -3,12 +3,12 @@ import java.util.Queue;
 
 public class BreadthFirstSearch<V> extends Search<V>{
 
-    public BreadthFirstSearch(MyGraph<V> graph, V source) {
+    public BreadthFirstSearch(WeightedGraph<V> graph, V source) {
         super(source);
         bfs(graph, source);
     }
 
-    private void bfs(MyGraph<V> graph, V current) {
+    private void bfs(WeightedGraph<V> graph, V current) {
         marked.add(current);
         Queue<V> queue = new LinkedList<>();
         queue.add(current);
